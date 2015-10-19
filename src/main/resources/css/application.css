@@ -1,0 +1,10 @@
+.tree-cell {
+    /*-fx-font-weight: bolder ;*/
+}
+.missing{
+    -fx-font-weight: lighter;
+}
+
+.missing .text{
+    -fx-strikethrough: true;
+}
