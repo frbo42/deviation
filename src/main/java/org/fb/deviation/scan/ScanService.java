@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-/**
- * Created by frank on 06.09.15.
- */
 @Service
 public class ScanService {
 

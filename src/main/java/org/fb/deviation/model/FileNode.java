@@ -2,9 +2,7 @@ package org.fb.deviation.model;
 
 import java.nio.file.Path;
 
-/**
- * Created by frank on 06.09.15.
- */
+
 public class FileNode implements DNode {
 
     private Path leftFile;

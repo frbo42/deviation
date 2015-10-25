@@ -12,7 +12,7 @@ class Pref {
     private static final String RIGHT_ROOT = "RightRoot";
     private final Preferences preferences;
 
-    public Pref() {
+    Pref() {
         preferences = Preferences.userNodeForPackage(getClass());
     }
 

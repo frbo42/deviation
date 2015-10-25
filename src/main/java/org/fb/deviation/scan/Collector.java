@@ -7,9 +7,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by frank on 08.09.15.
- */
 class Collector {
     private static final Path ROOT = Paths.get("");
     private final Map<Path, DirNode> folderNodeMap = new HashMap<>();

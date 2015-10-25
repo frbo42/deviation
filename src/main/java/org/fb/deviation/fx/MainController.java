@@ -20,18 +20,17 @@ import org.fb.deviation.fx.control.tree.TreeItemPredicate;
 import org.fb.deviation.model.DNode;
 import org.fb.deviation.model.DirNode;
 import org.fb.deviation.scan.ScanService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 
-/**
- * Created by frank on 09.09.15.
- */
+
 public class MainController {
-
-    public static final String path = "/main.fxml";
-
+    public static final String PATH = "/main.fxml";
+    private static final Logger LOG = LoggerFactory.getLogger(MainController.class);
     private final BooleanProperty hide = new SimpleBooleanProperty();
 
     @Autowired
@@ -90,11 +89,19 @@ public class MainController {
                         leftTree.setCellFactory(treeView -> {
                             DNodeCell dNodeCell = new DNodeCell(pref.lastLeftRoot().toString()) {
                                 @Override
+                                public boolean canCopy(DNode item) {
+                                    return item != null && !isMissing(item);
+                                }
+
+                                @Override
                                 boolean isMissing(DNode item) {
-                                    return item.isLeftMissing();
+                                    return item != null && item.isLeftMissing();
                                 }
                             };
                             dNodeCell.setContextMenu(buildContextMenu());
+                            DNode dNode =
+                                    dNodeCell.getItem();
+                            LOG.info("" + dNode);
                             return dNodeCell;
                         });
 
@@ -102,8 +109,8 @@ public class MainController {
                         rightTree.setCellFactory(tree -> new DNodeCell(pref.lastRightRoot().toString()) {
                             @Override
                             boolean isMissing(DNode item) {
-                                return item.isRightMissing();
-                            }
+                                return item != null && item.isRightMissing();
+                    }
                         });
 
                         rootItem.predicateProperty().bind(Bindings.createObjectBinding(() ->
@@ -111,7 +118,7 @@ public class MainController {
                                         !hide.get() || dNode.both())
                                 , hide));
                     } catch (IOException e1) {
-                        e1.printStackTrace();
+                        LOG.error("Failed to load tree", e1);
                     }
                 }
         );

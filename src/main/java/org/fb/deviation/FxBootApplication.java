@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.fb.deviation.fx.MainController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -11,28 +13,24 @@ import org.springframework.context.ApplicationContext;
 import java.io.IOException;
 import java.util.Arrays;
 
-/**
- * Created by frank on 06.09.15.
- */
-
 @SpringBootApplication
 public class FxBootApplication extends Application {
+    private static final Logger LOG = LoggerFactory.getLogger(FxBootApplication.class);
 
     private static String[] args;
 
     public static void main(String[] args) throws IOException {
         FxBootApplication.args = args;
         launch(args);
-
     }
 
     private static void log(ApplicationContext ctx) {
-        System.out.println("Let's inspect the beans provided by Spring Boot:");
+        LOG.info("Let's inspect the beans provided by Spring Boot:");
 
         String[] beanNames = ctx.getBeanDefinitionNames();
         Arrays.sort(beanNames);
         for (String beanName : beanNames) {
-            System.out.println(beanName);
+            LOG.info(beanName);
         }
     }
 

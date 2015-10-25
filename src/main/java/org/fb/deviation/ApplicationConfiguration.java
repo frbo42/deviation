@@ -13,7 +13,7 @@ class ApplicationConfiguration {
 
     @Bean
     public MainController mainPaneController() throws IOException {
-        return (MainController) loadController(MainController.path);
+        return (MainController) loadController(MainController.PATH);
     }
 
     private Object loadController(String url) throws IOException {

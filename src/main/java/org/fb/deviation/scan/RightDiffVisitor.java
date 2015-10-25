@@ -6,15 +6,12 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
-/**
- * Created by frank on 08.09.15.
- */
 class RightDiffVisitor extends SimpleFileVisitor<Path> {
 
     private final Path rootPath;
     private final Collector collector;
 
-    public RightDiffVisitor(Path rootPath, Collector collector) {
+    RightDiffVisitor(Path rootPath, Collector collector) {
         this.rootPath = rootPath;
         this.collector = collector;
     }

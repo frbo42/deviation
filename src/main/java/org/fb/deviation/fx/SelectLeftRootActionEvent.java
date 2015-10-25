@@ -11,9 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Nullable;
 import java.io.File;
 
-/**
- * Created by frank on 10.10.15.
- */
+
 @Component
 class SelectLeftRootActionEvent implements EventHandler<ActionEvent> {
 

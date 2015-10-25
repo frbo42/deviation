@@ -8,9 +8,7 @@ import org.fb.deviation.model.FileNode;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by frank on 11.10.15.
- */
+
 class TreeBuilder {
     private final FilterableTreeItem<DNode> rootItem;
 

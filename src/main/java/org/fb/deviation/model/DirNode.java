@@ -7,9 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by frank on 13.09.15.
- */
+
 public class DirNode implements DNode {
     private final String dirName;
     private final Map<Path, FileNode> files = new HashMap<>();

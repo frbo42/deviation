@@ -17,10 +17,10 @@ public interface TreeItemPredicate<T> {
      * Evaluates this predicate on the given argument.
      *
      * @param parent the parent tree item of the element or null if there is no
-     *               parent
-     * @param value  the value to be tested
+     *            parent
+     * @param value the value to be tested
      * @return {@code true} if the input argument matches the
-     * predicate,otherwise {@code false}
+     *         predicate,otherwise {@code false}
      */
     boolean test(TreeItem<T> parent, T value);
 }

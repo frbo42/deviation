@@ -14,50 +14,50 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
-            fx:controller="org.fb.deviation.fx.MainController"
-            fx:id="root">
-    <top>
-        <VBox>
-            <MenuBar>
-                <Menu text="_File" mnemonicParsing="true">
-                    <MenuItem text="Exit" onAction="#onExit">
-                        <accelerator>
-                            <KeyCodeCombination alt="UP" code="Q" control="UP" meta="UP" shift="UP" shortcut="DOWN"/>
-                        </accelerator>
-                    </MenuItem>
-                </Menu>
-            </MenuBar>
-            <HBox spacing="5">
-                <padding>
-                    <Insets top="5" right="5" bottom="5" left="5"/>
-                </padding>
-                <Button fx:id="leftButton" text="Select Left">
-                    <tooltip>
-                        <Tooltip text="Selects the left folder for the diff"/>
-                    </tooltip>
-                </Button>
-                <Button fx:id="rightButton" text="Select Right">
-                    <tooltip>
-                        <Tooltip text="Selects the right folder for the diff"/>
-                    </tooltip>
-                </Button>
-                <Button fx:id="compareButton" text="Compare">
-                    <tooltip>
-                        <Tooltip text="Compares the two selected folders"/>
-                    </tooltip>
-                </Button>
-                <ToggleButton fx:id="toggleButton" text="Hide">
-                    <tooltip>
-                        <Tooltip text="Hides the equals file and folders"/>
-                    </tooltip>
-                </ToggleButton>
-            </HBox>
-        </VBox>
-    </top>
-    <center>
-        <SplitPane>
-            <TreeView fx:id="leftTree"/>
-            <TreeView fx:id="rightTree"/>
-        </SplitPane>
-    </center>
+			fx:controller="org.fb.deviation.fx.MainController"
+			fx:id="root">
+	<top>
+		<VBox>
+			<MenuBar>
+				<Menu text="_File" mnemonicParsing="true">
+					<MenuItem text="Exit" onAction="#onExit">
+						<accelerator>
+							<KeyCodeCombination alt="UP" code="Q" control="UP" meta="UP" shift="UP" shortcut="DOWN"/>
+						</accelerator>
+					</MenuItem>
+				</Menu>
+			</MenuBar>
+			<HBox spacing="5">
+				<padding>
+					<Insets top="5" right="5" bottom="5" left="5"/>
+				</padding>
+				<Button fx:id="leftButton" text="Select Left">
+					<tooltip>
+						<Tooltip text="Selects the left folder for the diff"/>
+					</tooltip>
+				</Button>
+				<Button fx:id="rightButton" text="Select Right">
+					<tooltip>
+						<Tooltip text="Selects the right folder for the diff"/>
+					</tooltip>
+				</Button>
+				<Button fx:id="compareButton" text="Compare">
+					<tooltip>
+						<Tooltip text="Compares the two selected folders"/>
+					</tooltip>
+				</Button>
+				<ToggleButton fx:id="toggleButton" text="Hide">
+					<tooltip>
+						<Tooltip text="Hides the equals file and folders"/>
+					</tooltip>
+				</ToggleButton>
+			</HBox>
+		</VBox>
+	</top>
+	<center>
+		<SplitPane>
+			<TreeView fx:id="leftTree"/>
+			<TreeView fx:id="rightTree"/>
+		</SplitPane>
+	</center>
 </BorderPane>
