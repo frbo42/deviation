@@ -15,9 +15,9 @@ class Collector {
         return folderNodeMap.get(ROOT);
     }
 
-    private void registerDirNode(Path folder) {
-        if (!folderNodeMap.containsKey(folder)) {
-            folderNodeMap.put(folder, new DirNode(folder.getFileName().toString()));
+    private void registerDirNode(Path folderRelativePath) {
+        if (!folderNodeMap.containsKey(folderRelativePath)) {
+            folderNodeMap.put(folderRelativePath, new DirNode(folderRelativePath));
         }
     }
 

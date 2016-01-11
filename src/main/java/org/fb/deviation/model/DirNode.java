@@ -9,15 +9,15 @@ import java.util.Map;
 
 
 public class DirNode implements DNode {
-    private final String dirName;
     private final Map<Path, FileNode> files = new HashMap<>();
     private final List<DirNode> dirs = new ArrayList<>();
+    private final Path folderRelativePath;
     private boolean existsLeft;
     private boolean existsRight;
     private boolean isRoot;
 
-    public DirNode(String dirName) {
-        this.dirName = dirName;
+    public DirNode(Path folderRelativePath) {
+        this.folderRelativePath = folderRelativePath;
     }
 
     public void addRightFile(Path fileName) {
@@ -25,9 +25,9 @@ public class DirNode implements DNode {
         fileNode.addRight(fileName);
     }
 
-    public void addLeftFile(Path fileName) {
-        FileNode fileNode = getFileNode(fileName);
-        fileNode.addLeft(fileName);
+    public void addLeftFile(Path relativeFilePath) {
+        FileNode fileNode = getFileNode(relativeFilePath);
+        fileNode.addLeft(relativeFilePath);
     }
 
     private FileNode getFileNode(Path fileName) {
@@ -53,7 +53,7 @@ public class DirNode implements DNode {
 
     @Override
     public String toString() {
-        return dirName;
+        return folderRelativePath.getFileName().toString();
     }
 
     @Override
@@ -69,6 +69,11 @@ public class DirNode implements DNode {
     @Override
     public boolean both() {
         return isLeftMissing() ^ isRightMissing();
+    }
+
+    @Override
+    public Path getRelativePath() {
+        return folderRelativePath;
     }
 
     public void registerLeft() {

@@ -35,4 +35,9 @@ public class FileNode implements DNode {
     public boolean both() {
         return isLeftMissing() ^ isRightMissing();
     }
+
+    @Override
+    public Path getRelativePath() {
+        return leftFile != null ? leftFile : rightFile;
+    }
 }

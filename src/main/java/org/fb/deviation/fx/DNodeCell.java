@@ -1,7 +1,5 @@
 package org.fb.deviation.fx;
 
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.cell.TextFieldTreeCell;
 import org.fb.deviation.model.DNode;
 import org.fb.deviation.model.DirNode;
@@ -23,23 +21,6 @@ abstract class DNodeCell extends TextFieldTreeCell<DNode> {
         setRootName(item);
     }
 
-    private void setupContextMenu(DNode item) {
-        if (canCopy(item)) {
-            ContextMenu contextMenu = new ContextMenu();
-            MenuItem menuItem = new MenuItem("Copy");
-            contextMenu.getItems().add(menuItem);
-
-            setContextMenu(contextMenu);
-        } else {
-            setContextMenu(null);
-        }
-    }
-
-    boolean canCopy(DNode item) {
-        return false;
-    }
-
-
     private void setRootName(DNode item) {
         if (item instanceof DirNode && ((DirNode) item).isRoot()) {
             setText(rootNodeName);
@@ -53,6 +34,8 @@ abstract class DNodeCell extends TextFieldTreeCell<DNode> {
             getStyleClass().removeAll(MISSING);
         }
     }
+
+    abstract void setupContextMenu(DNode item);
 
     abstract boolean isMissing(DNode item);
 }

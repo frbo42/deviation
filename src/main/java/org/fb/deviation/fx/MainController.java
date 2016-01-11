@@ -10,11 +10,14 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+import org.fb.deviation.common.Pref;
+import org.fb.deviation.copy.CopyService;
 import org.fb.deviation.fx.control.tree.FilterableTreeItem;
 import org.fb.deviation.fx.control.tree.TreeItemPredicate;
 import org.fb.deviation.model.DNode;
@@ -27,14 +30,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 
-
 public class MainController {
+
     public static final String PATH = "/main.fxml";
     private static final Logger LOG = LoggerFactory.getLogger(MainController.class);
+
     private final BooleanProperty hide = new SimpleBooleanProperty();
 
     @Autowired
     private ScanService scanService;
+    @Autowired
+    private CopyService copyService;
+
     @Autowired
     private Pref pref;
     @Autowired
@@ -72,7 +79,7 @@ public class MainController {
                 rightButton.getScene().getAccelerators().put(new KeyCodeCombination(KeyCode.R, KeyCombination.SHORTCUT_DOWN), rightButton::fire));
 
 
-        toggleButton.setOnAction(event -> hide.setValue(((ToggleButton) event.getSource()).isSelected()));
+        toggleButton.setOnAction(event -> hide.setValue(((Toggle) event.getSource()).isSelected()));
         Platform.runLater(() ->
                 toggleButton.getScene().getAccelerators().put(new KeyCodeCombination(KeyCode.H, KeyCombination.SHORTCUT_DOWN), toggleButton::fire));
 
@@ -86,31 +93,37 @@ public class MainController {
 
                         FilterableTreeItem<DNode> rootItem = builder.getRootItem();
                         leftTree.setRoot(rootItem);
-                        leftTree.setCellFactory(treeView -> {
-                            DNodeCell dNodeCell = new DNodeCell(pref.lastLeftRoot().toString()) {
-                                @Override
-                                public boolean canCopy(DNode item) {
-                                    return item != null && !isMissing(item);
-                                }
+                        leftTree.setCellFactory(treeView -> new DNodeCell(pref.lastLeftRoot().toString()) {
+                            @Override
+                            protected void setupContextMenu(DNode item) {
+                                if (!isMissing(item)) {
+                                    ContextMenu contextMenu = new ContextMenu();
+                                    MenuItem menuItem = new MenuItem("Copy");
+                                    menuItem.setOnAction(event -> copy(item));
+                                    contextMenu.getItems().add(menuItem);
 
-                                @Override
-                                boolean isMissing(DNode item) {
-                                    return item != null && item.isLeftMissing();
+                                    setContextMenu(contextMenu);
+                                } else {
+                                    setContextMenu(null);
                                 }
-                            };
-                            dNodeCell.setContextMenu(buildContextMenu());
-                            DNode dNode =
-                                    dNodeCell.getItem();
-                            LOG.info("" + dNode);
-                            return dNodeCell;
+                            }
+
+                            @Override
+                            boolean isMissing(DNode item) {
+                                return item != null && item.isLeftMissing();
+                    }
                         });
 
                         rightTree.setRoot(rootItem);
                         rightTree.setCellFactory(tree -> new DNodeCell(pref.lastRightRoot().toString()) {
                             @Override
+                            protected void setupContextMenu(DNode item) {
+                    }
+
+                            @Override
                             boolean isMissing(DNode item) {
                                 return item != null && item.isRightMissing();
-                    }
+                            }
                         });
 
                         rootItem.predicateProperty().bind(Bindings.createObjectBinding(() ->
@@ -124,11 +137,8 @@ public class MainController {
         );
     }
 
-    private ContextMenu buildContextMenu() {
-        ContextMenu contextMenu = new ContextMenu();
-        MenuItem menuItem = new MenuItem("Copy");
-        contextMenu.getItems().add(menuItem);
-        return contextMenu;
+    private void copy(DNode item) {
+        copyService.copy(item);
     }
 
     public void onExit(ActionEvent actionEvent) {
