@@ -1,8 +1,8 @@
 package org.fb.deviation.fx;
 
 import javafx.scene.control.cell.TextFieldTreeCell;
-import org.fb.deviation.model.DNode;
-import org.fb.deviation.model.DirNode;
+import org.fb.deviation.domain.DNode;
+import org.fb.deviation.domain.DirNode;
 
 abstract class DNodeCell extends TextFieldTreeCell<DNode> {
 

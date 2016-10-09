@@ -1,4 +1,4 @@
-package org.fb.deviation.model;
+package org.fb.deviation.domain;
 
 
 import java.nio.file.Path;

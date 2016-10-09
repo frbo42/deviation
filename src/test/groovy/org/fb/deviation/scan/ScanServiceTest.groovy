@@ -1,6 +1,7 @@
 package org.fb.deviation.scan
 
-import org.fb.deviation.model.DirNode
+import org.fb.deviation.domain.DirNode
+import org.fb.deviation.service.scan.ScanService
 import org.junit.Rule
 import org.junit.rules.TemporaryFolder
 import spock.lang.Specification

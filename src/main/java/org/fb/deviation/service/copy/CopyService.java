@@ -1,7 +1,7 @@
-package org.fb.deviation.copy;
+package org.fb.deviation.service.copy;
 
-import org.fb.deviation.common.Pref;
-import org.fb.deviation.model.DNode;
+import org.fb.deviation.domain.DNode;
+import org.fb.deviation.fx.common.Pref;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

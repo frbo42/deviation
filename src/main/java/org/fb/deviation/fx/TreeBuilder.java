@@ -1,9 +1,9 @@
 package org.fb.deviation.fx;
 
+import org.fb.deviation.domain.DNode;
+import org.fb.deviation.domain.DirNode;
+import org.fb.deviation.domain.FileNode;
 import org.fb.deviation.fx.control.tree.FilterableTreeItem;
-import org.fb.deviation.model.DNode;
-import org.fb.deviation.model.DirNode;
-import org.fb.deviation.model.FileNode;
 
 import java.util.Collection;
 import java.util.List;

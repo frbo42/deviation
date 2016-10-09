@@ -1,4 +1,4 @@
-package org.fb.deviation.common;
+package org.fb.deviation.fx.common;
 
 import org.springframework.stereotype.Component;
 

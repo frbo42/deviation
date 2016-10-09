@@ -7,22 +7,17 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import org.fb.deviation.common.Pref;
-import org.fb.deviation.copy.CopyService;
+import org.fb.deviation.domain.DNode;
+import org.fb.deviation.domain.DirNode;
+import org.fb.deviation.fx.common.Pref;
 import org.fb.deviation.fx.control.tree.FilterableTreeItem;
 import org.fb.deviation.fx.control.tree.TreeItemPredicate;
-import org.fb.deviation.model.DNode;
-import org.fb.deviation.model.DirNode;
-import org.fb.deviation.scan.ScanService;
+import org.fb.deviation.service.copy.CopyService;
+import org.fb.deviation.service.scan.ScanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,7 +122,7 @@ public class MainController {
                         });
 
                         rootItem.predicateProperty().bind(Bindings.createObjectBinding(() ->
-                                TreeItemPredicate.<DNode>create(dNode ->
+                                        TreeItemPredicate.create(dNode ->
                                         !hide.get() || dNode.both())
                                 , hide));
                     } catch (IOException e1) {

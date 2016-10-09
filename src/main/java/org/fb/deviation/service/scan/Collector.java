@@ -1,6 +1,6 @@
-package org.fb.deviation.scan;
+package org.fb.deviation.service.scan;
 
-import org.fb.deviation.model.DirNode;
+import org.fb.deviation.domain.DirNode;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

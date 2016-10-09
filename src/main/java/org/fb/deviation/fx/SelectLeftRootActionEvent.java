@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
-import org.fb.deviation.common.Pref;
+import org.fb.deviation.fx.common.Pref;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

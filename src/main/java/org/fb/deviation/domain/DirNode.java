@@ -1,11 +1,7 @@
-package org.fb.deviation.model;
+package org.fb.deviation.domain;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class DirNode implements DNode {
